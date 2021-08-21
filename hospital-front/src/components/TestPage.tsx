@@ -1,38 +1,29 @@
 import "../style/Testpage.css"
+import {useRecoilState, useRecoilValue} from "recoil";
+import {currentQuestion, currentQuestion2, IQuestion, QuestionIdx} from "../store/store";
+import {useEffect, useState} from "react";
+import QuestionArea from "./QuestionArea";
 import poster from "../슬의.png";
-import contents from "../contents.json"
-import {log} from "util";
+
+
 const TestPage = () => {
 
-    contents.map(content => {
-        console.log(content.title, content.answerA, content.answerB)
-    })
+    const [idx, setIdx] = useRecoilState(QuestionIdx)
+    const currQuestion = useRecoilValue(currentQuestion);
+    const currQuestion2 = useRecoilValue(currentQuestion2);
+    console.log("2", currQuestion2)
+
+    useEffect(()=> {
+    }, [idx])
+
+
 
     return (
         <section id="main_contents">
             <div className="wrapper">
-                <div className="title">
 
-                    <div className="question_container" style={{"position": "relative"}}>
-                        Q. 동료 인턴이 부탁을 한다. <br/>어떻게 할까?
-                    </div>
-                    <div className="subtitles">
-                    </div>
-                </div>
-                <div className="answers">
-                    <div className="answers_wrap">
-                        A. 익준이가 어쩌구
-                    </div>
-                    <div className="answers_wrap">
-                        A. 준완이가 저쩌구
-                    </div>
+                <QuestionArea {...currQuestion2}/>
 
-                    <div className="status-bar">
-                        <div className="current-status">
-
-                        </div>
-                    </div>
-                </div>
                 <div className="bottom">
                     <div className="test-photo">
                         <img id="test-poster" src={poster} alt="슬의"/>

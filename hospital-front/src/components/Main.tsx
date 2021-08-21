@@ -1,8 +1,16 @@
 import "../style/Main.css"
 import poster from "../슬의.png"
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
+import {useResetRecoilState} from "recoil";
+import {QuestionIdx} from "../store/store";
 
 const Main = () => {
+    const resetIdx = useResetRecoilState(QuestionIdx)
+
+    useEffect(() => {
+        resetIdx()
+    }, [])
     return (
         <section id="main_contents">
             <div className="wrapper">
