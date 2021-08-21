@@ -1,11 +1,22 @@
-
-// 이걸 해주어야 타입이 보장되는 건가?
-npm install --save @types/react-router-dom
-npm install --save @types/styled-components
-
+// 이걸 해주어야 타입이 보장되는 건가? npm install --save @types/react-router-dom npm install --save @types/styled-components
 
 // async 때메 redirection 이 일어날 수도 있나?
 
+// testpage 에서 resultpage 로 넘어갈 때 routing 왜 url 이 안바뀌지 => 안에 onClick메서드 때문이었음
+```jsx
+<Link to="/resultpage">
+    <div className="answers_wrap" onClick={(e) => ToNextStep(e)}>
+        {answerB}
+    </div>
+</Link>
+```
++ LInk tag 를 클릭하는 것과 div 태그를 클릭하는 미세한 영역 차이때문인 이유도 있었다.
+
+
+
+// QuestionArea tsx 에서 삼항 연산자 안되는 이유 뭐임
+
+// link text-decorating 처리하기
 
 ```typescript
 const mbti = {

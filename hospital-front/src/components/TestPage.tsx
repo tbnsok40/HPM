@@ -1,28 +1,24 @@
 import "../style/Testpage.css"
-import {useRecoilState, useRecoilValue} from "recoil";
-import {currentQuestion, currentQuestion2, IQuestion, QuestionIdx} from "../store/store";
-import {useEffect, useState} from "react";
+import {useRecoilValue} from "recoil";
+import {currentQuestion, QuestionIdx} from "../store/store";
+import {useEffect} from "react";
 import QuestionArea from "./QuestionArea";
 import poster from "../슬의.png";
 
 
 const TestPage = () => {
 
-    const [idx, setIdx] = useRecoilState(QuestionIdx)
+    const idx = useRecoilValue(QuestionIdx)
     const currQuestion = useRecoilValue(currentQuestion);
-    const currQuestion2 = useRecoilValue(currentQuestion2);
-    console.log("2", currQuestion2)
 
     useEffect(()=> {
     }, [idx])
-
-
 
     return (
         <section id="main_contents">
             <div className="wrapper">
 
-                <QuestionArea {...currQuestion2}/>
+                <QuestionArea {...currQuestion}/>
 
                 <div className="bottom">
                     <div className="test-photo">
@@ -32,7 +28,7 @@ const TestPage = () => {
                     </div>
                 </div>
             </div>
-        </section>)
+        </section>);
 }
 
 export default TestPage;
