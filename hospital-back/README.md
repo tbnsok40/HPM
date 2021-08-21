@@ -71,3 +71,6 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+typeorm-model-generator -h 127.0.0.1 -d hospital -p 5432 -u postgres -x postgres -e postgres -o ./src/
