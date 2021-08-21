@@ -1,7 +1,10 @@
 
 // 이걸 해주어야 타입이 보장되는 건가?
 npm install --save @types/react-router-dom
+npm install --save @types/styled-components
 
+
+// async 때메 redirection 이 일어날 수도 있나?
 
 
 ```typescript
