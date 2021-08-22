@@ -31,13 +31,11 @@ const QuestionArea = ({...currQuestion}) => {
 
 
     return (
-        <>
-            <div className="title">
-                <div className="question_container" style={{"position": "relative"}}>
+        <div className="test-bottom">
+            <div className="question-container">
+                {/*<div className="question-title">*/}
                     Q. {title}
-                </div>
-                <div className="subtitles">
-                </div>
+                {/*</div>*/}
             </div>
             <div className="answers">
                 {idx < 12 &&
@@ -68,11 +66,12 @@ const QuestionArea = ({...currQuestion}) => {
                 </>
                 }
 
-                <div className="status-bar">
-                    <StatusBar/>
-                </div>
             </div>
-        </>
+
+            <div className="status-bar">
+                <StatusBar/>
+            </div>
+        </div>
     );
 }
 
