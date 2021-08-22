@@ -10,22 +10,23 @@ export const QuestionList = atom<IQuestion[]>({
 
 export const QuestionIdx = atom<number>({
     key: "QuestionIdx",
-    default: 1
+    default: 0
 })
 
 
 export interface IQuestion {
     "id": number,
     "title": string,
-    "answerA": [string, string],
-    "answerB": [string, string]
+    "answerA": string,
+    "answerB": string,
+    "answerAType": string,
+    "answerBType": string,
 }
-
 
 export const currentQuestion = selector({
     key: "currentQuestion",
     get: async ({get}) => {
-        // const questions = get(QuestionList)
+        const questions = get(QuestionList)
         const currentIdx = get(QuestionIdx)
 
         const response = await axios.get("http://localhost:4000/hospital") // http 쓰지 않으면 cors 에러 난다.

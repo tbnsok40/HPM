@@ -11,6 +11,7 @@ const Main = () => {
     useEffect(() => {
         resetIdx()
     }, [resetIdx])
+
     return (
         <section id="main_contents">
             <div className="wrapper">

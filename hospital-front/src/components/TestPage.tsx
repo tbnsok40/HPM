@@ -1,22 +1,14 @@
 import "../style/Testpage.css"
 import {useRecoilValue, useResetRecoilState} from "recoil";
 import {currentQuestion, QuestionIdx} from "../store/store";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import QuestionArea from "./QuestionArea";
 import poster from "../슬의.png";
-
+import styled from "styled-components";
 
 const TestPage = () => {
 
-    const idx = useRecoilValue(QuestionIdx)
-    const currQuestion = useRecoilValue(currentQuestion);
-
-    useEffect(() => {
-    }, [idx])
-
-
     const resetIdx = useResetRecoilState(QuestionIdx)
-
     useEffect(() => {
         resetIdx()
     }, [resetIdx])
@@ -31,7 +23,7 @@ const TestPage = () => {
                     <img id="test-photo" src={poster} alt="슬의"/>
                 </div>
 
-                <QuestionArea {...currQuestion}/>
+                <QuestionArea/>
 
             </div>
         </section>);
