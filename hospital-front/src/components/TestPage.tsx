@@ -1,5 +1,5 @@
 import "../style/Testpage.css"
-import {useRecoilValue} from "recoil";
+import {useRecoilValue, useResetRecoilState} from "recoil";
 import {currentQuestion, QuestionIdx} from "../store/store";
 import {useEffect} from "react";
 import QuestionArea from "./QuestionArea";
@@ -13,6 +13,13 @@ const TestPage = () => {
 
     useEffect(() => {
     }, [idx])
+
+
+    const resetIdx = useResetRecoilState(QuestionIdx)
+
+    useEffect(() => {
+        resetIdx()
+    }, [resetIdx])
 
     return (
         <section id="main_contents">
