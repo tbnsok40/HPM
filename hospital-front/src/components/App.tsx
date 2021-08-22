@@ -10,7 +10,6 @@ function App() {
     return (
         <div className="App">
             <Suspense fallback={<div>Loading...</div>}>
-
                 <header className="App-header">
                     <Switch>
                         <Route path="/" component={Main} exact/>

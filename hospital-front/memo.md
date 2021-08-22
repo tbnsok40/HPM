@@ -96,3 +96,7 @@ console.log(result, resultObj)
 
 // til case or 조건 =>
 // in 연산자 : index 를 기준으로 탐색한다.
+
+```
+i got it => 다음 스텝 넘어갈 때마다 loading 이 얼핏 보인다는 것은 api 호출을 하고 있다는 뜻이다,.즉 recoil 에서 api 를 계속 호출하고 있다는 말이다,.
+=> 매번 호출해도 state 가 변경되는 것이 아니니, react.memo 라는 것을 써보자. 

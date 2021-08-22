@@ -33,9 +33,7 @@ const QuestionArea = ({...currQuestion}) => {
     return (
         <div className="test-bottom">
             <div className="question-container">
-                {/*<div className="question-title">*/}
                     Q. {title}
-                {/*</div>*/}
             </div>
             <div className="answers">
                 {idx < 12 &&
