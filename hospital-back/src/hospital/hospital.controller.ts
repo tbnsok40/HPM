@@ -15,7 +15,6 @@ export class HospitalController {
   // 우선 답변을 배열 형태로 받아야 한다.
   @Post("/postAnswers")
   postAnswers(@Body() resultArray){
-    console.log(resultArray);
-    return this.hospitalService.saveAnswers(resultArray)
+    return this.hospitalService.saveAnswers(resultArray.array)
   }
 }
