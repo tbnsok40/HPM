@@ -94,6 +94,23 @@ for (let key in mbti) {
     }
 console.log(result, resultObj)
 
+
+// const StatusBar = styled.div`
+//   width: ${(idx) * 9.1}%;
+//   height: 30px;
+//   border-radius: 50px 0px 0px 50px;
+//   background-color: #76bfe4;
+// `;
+
+// if (idx === 12) {
+//     StatusBar = styled.div`
+//       width: 100%;
+//       height: 30px;
+//       border-radius: 50px 50px 50px 50px;
+//       background-color: #76bfe4;
+//` ;
+//     }
+
 // til case or 조건 =>
 // in 연산자 : index 를 기준으로 탐색한다.
 

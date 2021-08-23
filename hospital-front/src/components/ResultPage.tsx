@@ -1,5 +1,4 @@
 import poster from "../슬의.png";
-import {Link} from "react-router-dom";
 import "../style/Result.css"
 
 const ResultPage = () => {
