@@ -52,6 +52,7 @@ const QuestionArea = () => {
             }) // http 쓰지 않으면 cors 에러 난다.
 
         }
+        console.log(typeArray)
     }
 
 
