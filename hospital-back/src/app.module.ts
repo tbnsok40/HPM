@@ -6,7 +6,9 @@ import { HospitalModule } from './hospital/hospital.module';
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
-  imports: [HospitalModule, TypeOrmModule.forRoot()],
+  imports: [HospitalModule, TypeOrmModule.forRoot(
+    { keepConnectionAlive: true }
+  )],
   controllers: [AppController],
   providers: [AppService],
 })
