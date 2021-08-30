@@ -31,11 +31,12 @@ export class HospitalService {
 
 
   // 응답결과 배열 기반으로 유형 연산 로직 => 애초에 배열이 아니라 객체로 보냈으면 더 수월했을 듯.
-  async saveAnswers(resultArray) {
+  async saveAnswers(resultObject) {
+    console.log(resultObject);
     const resultObj = {}
-    const finalMBTI = decideMBTI(chooseSingleType(resultArray));
+    const finalMBTI = decideMBTI(chooseSingleType(resultObject));
     resultObj['mbti'] = finalMBTI  // entity 에서는 소문자로 바뀐다.
-    resultArray.forEach((ele, idx) => {
+    resultObject.forEach((ele, idx) => {
       resultObj[idx + 1] = ele
     })
 

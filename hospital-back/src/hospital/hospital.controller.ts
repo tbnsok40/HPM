@@ -13,7 +13,7 @@ export class HospitalController {
 
   // 우선 답변을 배열 형태로 받아야 한다.
   @Get("/postAnswers")
-  postAnswers(@Body() resultArray){
-    return this.hospitalService.saveAnswers(resultArray.array)
+  postAnswers(@Body() resultObject){
+    return this.hospitalService.saveAnswers(resultObject.params)
   }
 }
