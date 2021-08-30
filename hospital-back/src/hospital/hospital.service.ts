@@ -5,6 +5,8 @@ import { Repository } from "typeorm";
 import { chooseSingleType, decideMBTI, switchType } from "./utils";
 import { Result } from "../entities/Result";
 import { Answers } from "../entities/Answers";
+import { CreateAnswersDto } from "../DTO/CreateAnswers.dto";
+import { log } from "util";
 
 @Injectable()
 export class HospitalService {
@@ -28,13 +30,17 @@ export class HospitalService {
   }
 
 
-  // 응답결과 배열 기반으로 유형 연산 로직
+  // 응답결과 배열 기반으로 유형 연산 로직 => 애초에 배열이 아니라 객체로 보냈으면 더 수월했을 듯.
   async saveAnswers(resultArray) {
-    console.log(resultArray);
-    // const MBTIArray = chooseSingleType(resultArray) // resultArray 개별 원소 저장 => entity 를 만들어 저장해야하나.
+    const resultObj = {}
     const finalMBTI = decideMBTI(chooseSingleType(resultArray));
+    resultObj['mbti'] = finalMBTI  // entity 에서는 소문자로 바뀐다.
+    resultArray.forEach((ele, idx) => {
+      resultObj[idx + 1] = ele
+    })
+
     const res = await this.getResult(finalMBTI); // MBTI type
-    // await this.answersRepository.save();
+    await this.answersRepository.save(resultObj);
     return res;
   }
 }

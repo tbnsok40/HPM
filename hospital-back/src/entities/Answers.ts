@@ -42,18 +42,6 @@ export class Answers {
   @Column("text", { name: "12" })
   12: string;
 
-  @Column("text", { name: "13" })
-  13: string;
-
-  @Column("text", { name: "14" })
-  14: string;
-
-  @Column("text", { name: "15" })
-  15: string;
-
-  @Column("text", { name: "16" })
-  16: string;
-
-  @Column("text", { name: "MBTI" })
-  mbti: string;
+  @Column("text", { name: "MBTI", nullable: true })
+  mbti: string | null;
 }
