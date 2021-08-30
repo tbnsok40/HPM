@@ -5,8 +5,6 @@ import { Repository } from "typeorm";
 import { chooseSingleType, decideMBTI, switchType } from "./utils";
 import { Result } from "../entities/Result";
 import { Answers } from "../entities/Answers";
-import { CreateAnswersDto } from "../DTO/CreateAnswers.dto";
-import { log } from "util";
 
 @Injectable()
 export class HospitalService {
@@ -25,24 +23,25 @@ export class HospitalService {
   }
 
   async getResult(mbtiType) {
-    const resultId: number = 1; // switchType(mbtiType);
+    console.log(123, switchType(mbtiType))
+    const resultId: number = switchType(mbtiType);
+    console.log('resultId', resultId);
     return await this.resultRepository.findOne(resultId); // typeorm 은 getbyId (x)
   }
 
 
   // 응답결과 배열 기반으로 유형 연산 로직 => 애초에 배열이 아니라 객체로 보냈으면 더 수월했을 듯.
   async saveAnswers(resultObject) {
-    console.log(resultObject);
-    const resultObj = {}
-    const finalMBTI = decideMBTI(chooseSingleType(resultObject));
-    resultObj['mbti'] = finalMBTI  // entity 에서는 소문자로 바뀐다.
-    resultObject.forEach((ele, idx) => {
-      resultObj[idx + 1] = ele
+    const finalMBTI = chooseSingleType(resultObject);
+    resultObject['mbti'] = finalMBTI  // entity 에서는 소문자로 바뀐다.
+    const resultObj = Object.assign({
+      ...resultObject,
+      'mbti': finalMBTI
     })
 
-    const res = await this.getResult(finalMBTI); // MBTI type
     await this.answersRepository.save(resultObj);
-    return res;
+    const res = await this.getResult(finalMBTI); // MBTI type
+    return res
   }
 }
 

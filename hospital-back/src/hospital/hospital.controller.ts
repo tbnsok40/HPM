@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { HospitalService } from "./hospital.service";
+import { ApiResult } from "../DTO/Api.dto";
 
 @Controller('hospital')
 export class HospitalController {
@@ -13,7 +14,7 @@ export class HospitalController {
 
   // 우선 답변을 배열 형태로 받아야 한다.
   @Get("/postAnswers")
-  postAnswers(@Body() resultObject){
-    return this.hospitalService.saveAnswers(resultObject.params)
+  postAnswers(@Query() resultObject) {
+    return this.hospitalService.saveAnswers(resultObject)
   }
 }

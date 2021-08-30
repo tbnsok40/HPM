@@ -1,9 +1,20 @@
 import { MBTI_ARRAY } from "./constants";
 
-export const countElements = (array:string[], x:string) => array.filter(arr => x === arr).length
+export const countElements = (obj:{}) => {
+  const temp = [...Object.keys(obj)];
 
-export const chooseSingleType = (array: string[]) => {
-  return [... new Set(array.filter(result => countElements(array, result) >= 2))]
+  const result = temp.filter(key => {
+    return obj[key] > 1;
+  }); // return 시발
+  return decideMBTI(result)
+}
+
+export const chooseSingleType = (obj: {[idx: string]: string}) => {
+  const newObj = {};
+  Object.values(obj).forEach(v => {
+    newObj[v] = newObj[v] + 1 || 1
+  })
+  return countElements(newObj)
 }
 
 export const decideMBTI = (data: string[]) => {
@@ -17,33 +28,45 @@ export const decideMBTI = (data: string[]) => {
 }
 
 export enum MBTI {
-  ENFP,
-  INFP,
-  ESFP,
+  OOOO,
+  INFJ = 1,
   ISFP,
-  ENTP,
-  ENFJ,
-  INFJ,
+  INFP,
+  INTP,
+  ISFJ,
+  INTJ,
+  ESFP,
+  ENFP,
+  ESFJ,
+  ESTJ,
+  ENTJ,
 }
 
 export const switchType = (mbtiType) => {
+  console.log('333',mbtiType);
   switch (mbtiType) {
-    case MBTI.ENFP:
-      return 1;
-    case "INFP":
-      return 1;
-    case "ESFP":
-      return 1;
-    case "ISFP":
-      return 1;
-    case "ENTP":
-      return 1;
-    case "INFP":
-      return 1;
-    case "ENFJ":
-      return 1;
     case "INFJ":
       return 1;
+    case "ISFP":
+      return 2;
+    case "INFP":
+      return 3;
+    case "INTP":
+      return 4;
+    case "ISFJ":
+      return 5;
+    case "INTJ":
+      return 6;
+    case "ESFP":
+      return 7;
+    case "ENFP":
+      return 8;
+    case "ESFJ":
+      return 9;
+    case "ESTJ":
+      return 10;
+    case "ENTJ":
+      return 11;
     default:
       break;
   }
