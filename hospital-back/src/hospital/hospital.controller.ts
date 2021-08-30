@@ -11,7 +11,6 @@ export class HospitalController {
     return this.hospitalService.findAllQuestions()
   }
 
-
   // 우선 답변을 배열 형태로 받아야 한다.
   @Get("/postAnswers")
   postAnswers(@Body() resultArray){

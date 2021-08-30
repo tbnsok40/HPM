@@ -46,8 +46,7 @@ const QuestionArea = () => {
             setIdx(idx + 1);
         } else if (idx === 11) {
             resetIdx()
-
-            await axios.post("http://localhost:4000/hospital/postAnswers", {
+            await axios.post("http://localhost:5000/hospital/postAnswers", {
                 "array": [...typeArray, answerType]
             }) // http 쓰지 않으면 cors 에러 난다.
 
