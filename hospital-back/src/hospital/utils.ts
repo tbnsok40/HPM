@@ -1,12 +1,12 @@
 import { MBTI_ARRAY } from "./constants";
 
-export const countElements = (array, x) => array.filter(arr => x === arr).length
+export const countElements = (array:string[], x:string) => array.filter(arr => x === arr).length
 
-export const chooseSingleType = (array) => {
+export const chooseSingleType = (array: string[]) => {
   return [... new Set(array.filter(result => countElements(array, result) >= 2))]
 }
 
-export const decideMBTI = (data) => {
+export const decideMBTI = (data: string[]) => {
   let finalResult = ''
   MBTI_ARRAY.forEach(type => {
     if (data.includes(type)) {

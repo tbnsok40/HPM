@@ -20,7 +20,6 @@ export class HospitalService {
   }
 
   async getResult(mbtiType) {
-    console.log(mbtiType);
     const resultId:number = 1 // switchType(mbtiType);
     return await this.resultRepository.findOne(resultId); // typeorm 은 getbyId (x)
   }
@@ -29,12 +28,11 @@ export class HospitalService {
   // 응답결과 배열 기반으로 유형 연산 로직
   async saveAnswers(resultArray) {
     console.log(resultArray);
-    const MBTIArray = chooseSingleType(resultArray) // resultArray 개별 원소 저장 => entity 를 만들어 저장해야하나.
-    const finalMBTI = decideMBTI(MBTIArray);
+    // const MBTIArray = chooseSingleType(resultArray) // resultArray 개별 원소 저장 => entity 를 만들어 저장해야하나.
+    const finalMBTI = decideMBTI(chooseSingleType(resultArray));
     const res = await this.getResult(finalMBTI) // MBTI type
-    console.log(res.title);
-    // return res;
-    // return this.questionRepository.save();
+    // await this.questionRepository.save();
+    return res;
   }
 }
 
