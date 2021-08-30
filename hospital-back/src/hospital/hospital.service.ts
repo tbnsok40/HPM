@@ -3,12 +3,15 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Questions } from "../entities/Questions";
 import { Repository } from "typeorm";
 import { chooseSingleType, decideMBTI, switchType } from "./utils";
+import { Result } from "../entities/Result";
 
 @Injectable()
 export class HospitalService {
   constructor(
     @InjectRepository(Questions)
-    private questionRepository: Repository<Questions>
+    private questionRepository: Repository<Questions>,
+    @InjectRepository(Result) // 이게 없으면 dist 파일에 엔티티 생성안된다.
+    private resultRepository: Repository<Result>
   ) {
   }
 
@@ -18,8 +21,8 @@ export class HospitalService {
 
   async getResult(mbtiType) {
     console.log(mbtiType);
-    const resultId:number = switchType(mbtiType);
-    // return await this.newRepository.findOne(resultId); // typeorm 은 getbyId (x)
+    const resultId:number = 1 // switchType(mbtiType);
+    return await this.resultRepository.findOne(resultId); // typeorm 은 getbyId (x)
   }
 
 
@@ -28,7 +31,9 @@ export class HospitalService {
     console.log(resultArray);
     const MBTIArray = chooseSingleType(resultArray) // resultArray 개별 원소 저장 => entity 를 만들어 저장해야하나.
     const finalMBTI = decideMBTI(MBTIArray);
-    await this.getResult(finalMBTI) // MBTI type
+    const res = await this.getResult(finalMBTI) // MBTI type
+    console.log(res.title);
+    // return res;
     // return this.questionRepository.save();
   }
 }
