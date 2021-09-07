@@ -1,27 +1,19 @@
 import {useRecoilState, useRecoilValue, useResetRecoilState} from "recoil";
-import {initQuestionList, QuestionIdx} from "../store/store";
+import {IAnswers, initQuestionList, QuestionIdx} from "../store/store";
 // import styled from "styled-components";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {type} from "os";
+import {log} from "util";
 
 const QuestionArea = () => {
-    // const [init, setInit] = useState(true)
+
     const [idx, setIdx] = useRecoilState(QuestionIdx)
     const resetIdx = useResetRecoilState(QuestionIdx)
     useEffect(() => {
         resetIdx()
     }, [resetIdx])
-    // const [currQuestion, setQuestions] = useState<IQuestion[]>([
-    //     {
-    //         "id": 0,
-    //         "title": '',
-    //         "answerA": '',
-    //         "answerB": '',
-    //         "answerAType": '',
-    //         "answerBType": '',
-    //     }]
-    // );
     const currentQuestion = useRecoilValue(initQuestionList(idx))
 
     // const getInitQuestions = async () => {
@@ -34,32 +26,53 @@ const QuestionArea = () => {
     // }, [init]);
 
     useEffect(() => {
+        console.log(currentQuestion)
     }, [idx])
 
-
     const [typeArray, setTypeArray] = useState<string[]>([])
-
     const ToNextStep = async (e: any, answerType: string) => {
-        setTypeArray([...typeArray, answerType]);
 
         if (idx <= 10) {
+            setTypeArray([...typeArray, answerType]);
             setIdx(idx + 1);
         } else if (idx === 11) {
+            const tempArray = [...typeArray, answerType]
+            const resultObj: { [index: string]: string } = {
+                "1":'',
+                "2": '',
+                "3": '',
+                "4": '',
+                "5": '',
+                "6": '',
+                "7": '',
+                "8": '',
+                "9": '',
+                "10": '',
+                "11": '',
+                "12": '',
+            };
+            tempArray.forEach((ele, idx) => {
+                const id = (idx + 1).toString()
+                resultObj[id] = ele
+            })
             resetIdx()
-            await axios.post("http://localhost:5000/hospital/postAnswers", {
-                "array": [...typeArray, answerType]
-            }) // http 쓰지 않으면 cors 에러 난다.
-
+            try {
+                console.log('obj', resultObj)
+                const result = await axios.get("http://localhost:5000/hospital/postAnswers", {
+                    params: resultObj
+                }); // http 쓰지 않으면 cors 에러 난다.
+                console.log(result)
+            } catch (e){
+                console.log(e)
+            }
         }
-        console.log(typeArray)
     }
-
-
 
     return (
         <div className="test-bottom">
             <div className="question-container">
                 {/*Q. {currQuestion && currQuestion[idx].title}*/}
+                {`Q${currentQuestion.id}.`} <br/>
                 {currentQuestion['title']}
             </div>
             <div className="answers">
