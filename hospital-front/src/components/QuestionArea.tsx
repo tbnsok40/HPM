@@ -26,7 +26,7 @@ const QuestionArea = () => {
     // }, [init]);
 
     useEffect(() => {
-        console.log(currentQuestion)
+        // console.log(currentQuestion)
     }, [idx])
 
     const [typeArray, setTypeArray] = useState<string[]>([])
@@ -57,11 +57,11 @@ const QuestionArea = () => {
             })
             resetIdx()
             try {
-                console.log('obj', resultObj)
+                // console.log('obj', resultObj)
                 const result = await axios.get("http://localhost:5000/hospital/postAnswers", {
                     params: resultObj
                 }); // http 쓰지 않으면 cors 에러 난다.
-                console.log(result)
+                // console.log(result)
             } catch (e){
                 console.log(e)
             }
@@ -72,7 +72,7 @@ const QuestionArea = () => {
         <div className="test-bottom">
             <div className="question-container">
                 {/*Q. {currQuestion && currQuestion[idx].title}*/}
-                {`Q${currentQuestion.id}.`} <br/>
+                {`Q${currentQuestion.id}`} <br/>
                 {currentQuestion['title']}
             </div>
             <div className="answers">
